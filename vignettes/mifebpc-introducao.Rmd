@@ -1,0 +1,85 @@
+---
+title: "Introdução e Guia Metodologico do Pacote mifebpc"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introdução e Guia Metodológico do Pacote mifebpc}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 7,
+  fig.height = 4.5,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+::: {}
+```{r setup}
+library(mifebpc)
+```
+:::
+
+# **Visão Geral e Objetivo**
+
+O pacote mifebpc foi desenvolvido para automatizar, padronizar e conferir transparência metodológica às projeções atuariais, físicas e financeiras do Benefício de Prestação Continuada (BPC). O sistema integra a modelagem preditiva de filas de concessão (administrativa e judicial) com um motor atuarial que simula a evolução do estoque ativo, saídas por óbito, revisões cadastrais e fluxos residuais, culminando numa decomposição orçamentária, além de disponibilizar um módulo completo de inspeção de dados históricos e dos parâmetros utilizados.
+
+# **Arquitetura do Fluxo de Trabalho**
+
+O pipeline do pacote encontra-se dividido em fases modulares:
+
+- **Consulta Prévia (Módulo de Consultas):** Inspeção dos metadados, séries históricas de fila processada, quadrantes, expectativas de revisão, tábuas atuariais e valores financeiros executados.
+
+- **Obtenção de Indicadores Macroeconómicos (obter_dados_macro):** Coleta automatizada de séries temporais conjunturais (IPCA, desemprego, etc.).
+
+- **Projeção da Fila (projetar_fila_bpc):** Estimação de concessões e Tempos Médios de Concessão (TMC) através de Random Forest e extrapolação temporal com horizonte flexível (horizonte_meses).
+
+- **Processamento Atuarial (executar_motor_atuarial):** Simulação da dinâmica populacional do benefício segregada por espécie (PCD e Idoso).
+
+- **Cálculo de Impactos e Decomposição (calcular_impactos_financeiros):** Isolamento exato entre o Efeito Preço (reajuste nominal do Salário Mínimo) e o Efeito Volume (variação física da base de beneficiários).
+
+- **Relatoria Executiva (gerar_relatorio_atuarial):** Exportação consolidada das abas técnicas para uma planilha de trabalho Excel estruturada.
+
+# **Exemplo Prático de Utilização**
+
+A seguir demonstra-se o ciclo operacional completo utilizando o pacote:
+
+library(mifebpc)
+
+**0. Inspeção de metadados e consulta a dados históricos metadados** \<- listar_metadados_pacote() df_hist_fila \<- consultar_historico_fila(especie = "87", data_inicio = "2024-01-01") df_executados \<- consultar_valores_executados(data_inicio = "2026-01-01")
+
+**1. Obter dados macroeconómicos mais recentes**
+
+dt_macro \<- obter_dados_macro()
+
+**2. Projetar a fila com horizonte de 12 meses**
+
+df_fila \<- projetar_fila_bpc( dt_macro = dt_macro, horizonte_meses = 12L, data_inicio_projecao = NULL )
+
+**3. Executar o motor atuarial sobre a fila projetada**
+
+df_atuarial \<- executar_motor_atuarial(df_final_engine = df_fila)
+
+**4. Definir a trajetória do Salário-Mínimo vigente**
+
+tabela_sm_vigente \<- tibble::tibble( Ano = 2026:2031, SM = c(1621, 1741, 1841, 1941, 2041, 2141) )
+
+**5. Calcular impactos financeiros e decomposição de variações**
+
+resultado_financeiro \<- calcular_impactos_financeiros( df_fluxo_detalhado = df_atuarial, tabela_sm = tabela_sm_vigente )
+
+**6. Inspecionar o resumo anual de impactos e decomposições**
+
+resultado_financeiro\$impactos_var
+
+# Decomposição Preço vs. Volume
+
+O pacote utiliza uma identidade de decomposição aditiva sem resíduos residuais de interação.
+
+Seja $C_t = V_t^{eq} \times P_t$ o custo total anualizado (onde $V_t^{eq}$ é o volume físico equivalente anualizado pela média mensal e $P_t$ é o salário mínimo médio do ano), a variação absoluta do custo ($\Delta C_t$) entre o ano anterior ($t-1$) e o ano corrente ($t$) decompõe-se algebricamente da seguinte forma–$$\Delta C_t = \underbrace{(V_t^{eq} - V_{t-1}^{eq}) \times P_{t-1}}_{\text{Efeito Volume}} + \underbrace{(P_t - P_{t-1}) \times V_t^{eq}}_{\text{Efeito Preço (Salário-Mínimo)}}$$Nota: O primeiro ano da série exibe explicitamente NA nas colunas de variação incremental (Impacto_Variacao_Fisico e Impacto_Variacao_SM), por não possuir um ano anterior completo de referência, assegurando correção metodológica.
+
+------------------------------------------------------------------------
