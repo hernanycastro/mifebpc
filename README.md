@@ -1,5 +1,3 @@
-editor_options: markdown: wrap: 72 ---
-
 # mifebpc: Modelo Atuarial e Projeção do BPC 📊🏛️
 
 [![R-CMD-check](https://github.com/hernanycastro/mifebpc/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hernanycastro/mifebpc) [![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/hernanycastro/mifebpc/releases/tag/v0.1.0) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
