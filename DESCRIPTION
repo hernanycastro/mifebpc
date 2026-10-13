@@ -9,6 +9,7 @@ Description: Implementa a arquitetura de projeção agregada para o Benefício d
     máquina, projeção demográfica atuarial e decomposição financeira de impacto
     físico e do salário-mínimo.
 License: GPL (>= 3)
+Language: pt-BR
 Encoding: UTF-8
 Depends: 
     R (>= 4.0.0)
