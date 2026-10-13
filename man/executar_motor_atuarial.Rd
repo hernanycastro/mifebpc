@@ -62,6 +62,7 @@ por idade usada para calcular óbitos vem do último mês do CSV de estoque.
 }
 \examples{
 \dontrun{
+  df_tabua <- consultar_parametros_tabua(ano_filtro = 2025)
   dt_macro <- obter_dados_macro()
   df_fila <- projetar_fila_bpc(dt_macro = dt_macro, horizonte_meses = 12L)
   df_atuarial <- executar_motor_atuarial(df_final_engine = df_fila)

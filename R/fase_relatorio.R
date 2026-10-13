@@ -8,18 +8,18 @@
 #' @details
 #' Fórmulas (todas por espécie PCD/Idoso; BPC = PCD + Idoso):
 #' \itemize{
-#'   \item **Retroativo** (adm e jud) = entradas × TMC (em meses) × salário
+#'   \item **Retroativo** (adm e jud) = entradas * TMC (em meses) * salário
 #'     mínimo (SM).
-#'   \item **Juros e correção** = retroativo × `taxa_juros`.
-#'   \item **Total** = estoque × SM + retroativo adm + retroativo jud + juros
+#'   \item **Juros e correção** = retroativo * `taxa_juros`.
+#'   \item **Total** = estoque * SM + retroativo adm + retroativo jud + juros
 #'     adm + juros jud.
-#'   \item **IC inferior / superior** = Total BPC × (1 -/+ `ic`).
+#'   \item **IC inferior / superior** = Total BPC * (1 -/+ `ic`).
 #' }
 #'
 #' Na tabela mensal (`planilha1`) os cálculos são feitos mês a mês. Na tabela
-#' anual (`resumo_detalhes`) o retroativo usa a **soma das entradas do ano ×
+#' anual (`resumo_detalhes`) o retroativo usa a **soma das entradas do ano *
 #' média anual da TMC** (como na aba `resumo_detalhes` do Excel), e o custo do
-#' estoque usa a soma dos estoques mensais do ano × SM. Por isso o total anual
+#' estoque usa a soma dos estoques mensais do ano * SM. Por isso o total anual
 #' não é exatamente a soma dos meses. O estoque anual é o do último mês do ano
 #' presente nos dados.
 #'
@@ -38,7 +38,7 @@
 #' @param df_fluxo_detalhado Data frame gerado por [executar_motor_atuarial()].
 #' @param taxa_juros Taxa de juros e correção aplicada sobre o retroativo.
 #' @param tabela_sm Data frame com as colunas `Ano` e `SM` (salário mínimo).
-#' @param ic Amplitude do intervalo de confiança (0,05 = ±5%).
+#' @param ic Amplitude do intervalo de confiança (0,05 = +/- 5%).
 #' @param caminho_xlsx Caminho de um arquivo `.xlsx` para gravar o relatório
 #'   (abas `resumo`, `resumo_detalhes`, `Planilha1` e `Estoque_Mensal_Detalhado`).
 #'   Se `NULL` (padrão), nada é gravado.

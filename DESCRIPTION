@@ -1,12 +1,13 @@
 Package: mifebpc
-Title: Motor Integrado de Projecao Operacional da Fila e Atuarial do BPC
+Title: Motor Integrado de Projeção Operacional da Fila e Atuarial do BPC
 Version: 0.1.0
 Authors@R: 
-    person("Hernany", "Castro", , "hernany.castro@escriba.com", role = c("aut", "cre"))
-Description: Implementa a arquitetura de projecao agregada para o Beneficio de
-    Prestacao Continuada (BPC), combinando modelagem de fila via aprendizado de
-    maquina, projecao demografica atuarial e decomposicao financeira de impacto
-    fisico e do salario minimo.
+    person("Hernany", "Castro", , "hernany1@egmail.com", role = c("aut", "cre"))
+Maintainer: Hernany Castro <hernany1@gmail.com>
+Description: Implementa a arquitetura de projeção agregada para o Benefício de
+    Prestação Continuada (BPC), combinando modelagem de fila via aprendizado de
+    máquina, projeção demográfica atuarial e decomposição financeira de impacto
+    físico e do salário-mínimo.
 License: GPL (>= 3)
 Encoding: UTF-8
 Depends: 

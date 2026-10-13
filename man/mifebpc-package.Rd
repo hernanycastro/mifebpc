@@ -4,16 +4,16 @@
 \name{mifebpc-package}
 \alias{mifebpc}
 \alias{mifebpc-package}
-\title{mifebpc: Motor Integrado de Projecao Operacional da Fila e Atuarial do BPC}
+\title{mifebpc: Motor Integrado de Projeção Operacional da Fila e Atuarial do BPC}
 \description{
-Implementa a arquitetura de projecao agregada para o Beneficio de Prestacao Continuada (BPC), combinando modelagem de fila via aprendizado de maquina, projecao demografica atuarial e decomposicao financeira de impacto fisico e do salario minimo.
+Implementa a arquitetura de projeção agregada para o Benefício de Prestação Continuada (BPC), combinando modelagem de fila via aprendizado de máquina, projeção demográfica atuarial e decomposição financeira de impacto físico e do salário-mínimo.
 }
 \author{
-\strong{Maintainer}: Hernany Castro \email{hernany.castro@escriba.com}
+\strong{Maintainer}: Hernany Castro \email{hernany1@egmail.com}
 
 Authors:
 \itemize{
-  \item Hernany Castro \email{hernany.castro@escriba.com}
+  \item Hernany Castro \email{hernany1@egmail.com}
 }
 
 }

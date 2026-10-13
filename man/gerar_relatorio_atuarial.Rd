@@ -19,7 +19,7 @@ gerar_relatorio_atuarial(
 
 \item{tabela_sm}{Data frame com as colunas \code{Ano} e \code{SM} (salário mínimo).}
 
-\item{ic}{Amplitude do intervalo de confiança (0,05 = ±5\%).}
+\item{ic}{Amplitude do intervalo de confiança (0,05 = +/- 5\%).}
 
 \item{caminho_xlsx}{Caminho de um arquivo \code{.xlsx} para gravar o relatório
 (abas \code{resumo}, \code{resumo_detalhes}, \code{Planilha1} e \code{Estoque_Mensal_Detalhado}).
@@ -39,18 +39,18 @@ disponíveis no pacote) não está incluída.
 \details{
 Fórmulas (todas por espécie PCD/Idoso; BPC = PCD + Idoso):
 \itemize{
-\item \strong{Retroativo} (adm e jud) = entradas × TMC (em meses) × salário
+\item \strong{Retroativo} (adm e jud) = entradas * TMC (em meses) * salário
 mínimo (SM).
-\item \strong{Juros e correção} = retroativo × \code{taxa_juros}.
-\item \strong{Total} = estoque × SM + retroativo adm + retroativo jud + juros
+\item \strong{Juros e correção} = retroativo * \code{taxa_juros}.
+\item \strong{Total} = estoque * SM + retroativo adm + retroativo jud + juros
 adm + juros jud.
-\item \strong{IC inferior / superior} = Total BPC × (1 -/+ \code{ic}).
+\item \strong{IC inferior / superior} = Total BPC * (1 -/+ \code{ic}).
 }
 
 Na tabela mensal (\code{planilha1}) os cálculos são feitos mês a mês. Na tabela
-anual (\code{resumo_detalhes}) o retroativo usa a \strong{soma das entradas do ano ×
+anual (\code{resumo_detalhes}) o retroativo usa a \strong{soma das entradas do ano *
 média anual da TMC} (como na aba \code{resumo_detalhes} do Excel), e o custo do
-estoque usa a soma dos estoques mensais do ano × SM. Por isso o total anual
+estoque usa a soma dos estoques mensais do ano * SM. Por isso o total anual
 não é exatamente a soma dos meses. O estoque anual é o do último mês do ano
 presente nos dados.
 

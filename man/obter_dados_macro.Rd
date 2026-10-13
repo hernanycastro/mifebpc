@@ -4,7 +4,7 @@
 \alias{obter_dados_macro}
 \title{Coleta e Prepara Indicadores Conjunturais e Macro}
 \usage{
-obter_dados_macro(data_inicio = "2023-01-01", pop_idosa_base = 32000000)
+obter_dados_macro(data_inicio = "2023-01-01", pop_idosa_base = 3.2e+07)
 }
 \arguments{
 \item{data_inicio}{Data inicial para a série temporal do BCB (formato
